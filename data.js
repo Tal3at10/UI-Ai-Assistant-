@@ -253,7 +253,7 @@ const appData = {
         'الإنذار': 'الإنذار هو إعلان رسمي يوجهه الدائن إلى المدين لحثه على الوفاء بالتزامه خلال مدة معينة وإلا اتخذ ضده الإجراءات القانونية.'
     },
 
-    // Mock AI Responses for Document Analysis
+    // Document Analysis Summaries
     mockSummaries: {
         rental: {
             title: 'ملخص عقد الإيجار',
@@ -308,7 +308,7 @@ const appData = {
         }
     },
 
-    // Mock Chat Responses
+    // Chat Responses
     mockChatResponses: [
         'بناءً على المستند، البند الخامس ينص على أن الإنهاء المبكر ممكن بإشعار مسبق لمدة شهرين.',
         'المسؤولية عن الإصلاحات تقع على عاتق المؤجر للأضرار الهيكلية، وعلى المستأجر للأضرار الناتجة عن الاستخدام.',

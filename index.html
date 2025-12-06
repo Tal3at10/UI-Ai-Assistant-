@@ -9,12 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <script>
-        // Safe wrapper for onclick handlers - defined early to avoid errors
         function safeShowView(view) {
             if (window.app && typeof app.showView === 'function') {
                 app.showView(view);
-            } else {
-                console.log('App not ready yet, view:', view);
             }
         }
     </script>
@@ -328,7 +325,7 @@
             </div>
         </section>
 
-        <!-- Main Chat View (Like ChatGPT) -->
+        <!-- Main Chat View -->
         <section class="chat-view" id="chatView">
             <div class="chat-container">
                 <!-- Sidebar -->

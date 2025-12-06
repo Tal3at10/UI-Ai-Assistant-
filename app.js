@@ -28,20 +28,13 @@ class LegalAssistantApp {
     setupNavbarScroll() {
         const navbar = document.querySelector('.navbar');
         
-        if (!navbar) {
-            console.error('Navbar not found!');
-            return;
-        }
-        
-        console.log('Navbar scroll effect initialized');
+        if (!navbar) return;
         
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
                 navbar.classList.add('scrolled');
-                console.log('Added scrolled class');
             } else {
                 navbar.classList.remove('scrolled');
-                console.log('Removed scrolled class');
             }
         });
     }
@@ -92,29 +85,17 @@ class LegalAssistantApp {
         }
     }
 
-    // Start Demo Animation
     startDemoAnimation() {
         const demoContent = document.getElementById('demoContent');
-        if (!demoContent) {
-            console.log('Demo content not found');
-            return;
-        }
+        if (!demoContent) return;
 
-        console.log('Starting demo animation');
-
-        // Animation sequence
         setTimeout(() => {
-            // After 1 second, show typing dots briefly, then start typing
             const aiMsg = demoContent.querySelector('.ai-msg');
-            console.log('AI message element:', aiMsg);
             
             if (aiMsg) {
                 const bubble = aiMsg.querySelector('.demo-bubble');
-                console.log('Bubble element:', bubble);
                 
-                // Wait 0.5 seconds (dots show briefly), then start typewriter
                 setTimeout(() => {
-                    console.log('Starting typewriter effect');
                     this.typewriterEffect(bubble);
                 }, 500);
             }
@@ -127,24 +108,16 @@ class LegalAssistantApp {
     }
 
     typewriterEffect(element) {
-        if (!element) {
-            console.error('Element not found for typewriter effect');
-            return;
-        }
+        if (!element) return;
         
-        console.log('Typewriter effect starting on element:', element);
-        
-        // Clear any existing content (including typing dots)
         element.innerHTML = '';
         
-        // Text to display with typing effect
         const fullText = `<strong>تحليل العقد:</strong><br><br>• مدة العقد: سنة واحدة قابلة للتجديد<br>• قيمة الإيجار: 3000 جنيه شهرياً<br>• التأمين: شهرين مقدماً<br>• المسؤول عن الصيانة: المالك`;
         
         let index = 0;
         
         const typeInterval = setInterval(() => {
             if (index < fullText.length) {
-                // Handle HTML tags
                 if (fullText.charAt(index) === '<') {
                     const closingTag = fullText.indexOf('>', index);
                     if (closingTag !== -1) {
@@ -160,9 +133,8 @@ class LegalAssistantApp {
                 }
             } else {
                 clearInterval(typeInterval);
-                console.log('Typewriter effect completed');
             }
-        }, 30); // Speed of typing (30ms per character)
+        }, 30);
     }
 
     resetDemoAnimation() {
@@ -645,11 +617,7 @@ ${summary.content}
         const featuresGrid = document.getElementById('featuresGrid');
         const recentDocuments = document.getElementById('recentDocuments');
 
-        // Check if elements exist (they might not be on landing page)
-        if (!featuresGrid || !recentDocuments) {
-            console.log('Dashboard elements not found - probably on landing page');
-            return;
-        }
+        if (!featuresGrid || !recentDocuments) return;
 
         // Render Features
         featuresGrid.innerHTML = appData.features.map(feature => `
