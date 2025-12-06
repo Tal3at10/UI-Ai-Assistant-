@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مُعين - المساعد القانوني الذكي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        // Safe wrapper for onclick handlers - defined early to avoid errors
+        function safeShowView(view) {
+            if (window.app && typeof app.showView === 'function') {
+                app.showView(view);
+            } else {
+                console.log('App not ready yet, view:', view);
+            }
+        }
+    </script>
+</head>
+<body class="landing-mode"></body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="safeShowView('landing')">
+                <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                </svg>
+                <span class="brand-name">مُعين</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">الخدمات</a>
+                <a href="#pricing" class="nav-link">الأسعار</a>
+                <a href="#about" class="nav-link">من نحن</a>
+                <button class="btn-primary" onclick="safeShowView('chat')">
+                    <span>ابدأ الآن</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="app">
+        <!-- Landing Page -->
+        <section class="landing-view active-view" id="landingView">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            المساعد القانوني الذكي
+                            <span class="gradient-text">المدعوم بالذكاء الاصطناعي</span>
+                        </h1>
+                        <p class="hero-description">
+                            نبسط لك القانون المصري. نحلل المستندات، ننشئ العقود، ونجيب على أسئلتك القانونية بدقة وسرعة فائقة
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn-hero-primary" onclick="app.showView('chat')">
+                                ابدأ مجاناً
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button class="btn-hero-secondary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+                                اكتشف المزيد
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-card card-1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
+                            </svg>
+                            <span>تحليل المستندات</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
+                            </svg>
+                            <span>إنشاء العقود</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-width="2"/>
+                            </svg>
+                            <span>استشارات فورية</span>
+                        </div>
+                        <div class="floating-card card-4">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01" stroke-width="2"/>
+                            </svg>
+                            <span>شرح المصطلحات</span>
+                        </div>
+                        <div class="floating-card card-5">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="2"/>
+                            </svg>
+                            <span>استشارات قانونية</span>
+                        </div>
+                        <div class="floating-card card-6">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-width="2"/>
+                            </svg>
+                            <span>متابعة القضايا</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Demo Section -->
+            <div class="demo-section">
+                <div class="section-container">
+                    <div class="demo-grid">
+                        <!-- Left: Live Demo -->
+                        <div class="demo-visual">
+                            <div class="demo-window">
+                                <div class="demo-header">
+                                    <div class="demo-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="demo-content" id="demoContent">
+                                    <div class="demo-chat-message user-msg">
+                                        <div class="demo-avatar user">م</div>
+                                        <div class="demo-bubble">حلل عقد الإيجار هذا</div>
+                                    </div>
+                                    <div class="demo-file-upload">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
+                                        </svg>
+                                        <span>عقد_إيجار.pdf</span>
+                                    </div>
+                                    <div class="demo-chat-message ai-msg">
+                                        <div class="demo-avatar ai">AI</div>
+                                        <div class="demo-bubble">
+                                            <div class="demo-typing">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Static Text -->
+                        <div class="demo-text">
+                            <div class="demo-label">المساعد</div>
+                            <h2 class="demo-title">مصمم خصيصاً لخبرتك القانونية</h2>
+                            <p class="demo-description">
+                                وفّر المهام المعقدة بلغة طبيعية لمساعدك الشخصي المتخصص في القانون المصري. 
+                                يفهم مُعين السياق القانوني ويقدم إجابات دقيقة ومفصلة.
+                            </p>
+                            <a href="#" class="demo-link" onclick="app.showView('chat'); return false;">
+                                استكشف المساعد
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section" id="features">
+                <div class="section-container">
+                    <div class="section-header">
+                        <h2 class="section-title">خدماتنا القانونية</h2>
+                        <p class="section-subtitle">كل ما تحتاجه من خدمات قانونية في مكان واحد</p>
+                    </div>
+                    <div class="services-grid" id="servicesGrid">
+                        <!-- Services will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="pricing-section" id="pricing">
+                <div class="section-container">
+                    <div class="section-header">
+                        <h2 class="section-title">خطط الأسعار</h2>
+                        <p class="section-subtitle">اختر الخطة المناسبة لاحتياجاتك</p>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">مجاني</h3>
+                                <div class="pricing-price">
+                                    <span class="price-amount">0</span>
+                                    <span class="price-currency">جنيه</span>
+                                    <span class="price-period">/شهرياً</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    5 استشارات شهرياً
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    تحليل مستند واحد
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    شرح المصطلحات القانونية
+                                </li>
+                            </ul>
+                            <button class="btn-pricing" onclick="app.showView('chat')">ابدأ مجاناً</button>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="featured-badge">الأكثر شعبية</div>
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">احترافي</h3>
+                                <div class="pricing-price">
+                                    <span class="price-amount">299</span>
+                                    <span class="price-currency">جنيه</span>
+                                    <span class="price-period">/شهرياً</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    استشارات غير محدودة
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    تحليل 20 مستند شهرياً
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    إنشاء 10 عقود شهرياً
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    دعم فني أولوية
+                                </li>
+                            </ul>
+                            <button class="btn-pricing primary" onclick="app.showView('chat')">اشترك الآن</button>
+                        </div>
+
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">للشركات</h3>
+                                <div class="pricing-price">
+                                    <span class="price-amount">999</span>
+                                    <span class="price-currency">جنيه</span>
+                                    <span class="price-period">/شهرياً</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    كل مميزات الخطة الاحترافية
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    مستندات وعقود غير محدودة
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    حسابات متعددة للفريق
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M5 13l4 4L19 7" stroke-width="2"/>
+                                    </svg>
+                                    استشارة محامي متخصص
+                                </li>
+                            </ul>
+                            <button class="btn-pricing" onclick="app.showView('chat')">تواصل معنا</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="about-section" id="about">
+                <div class="section-container">
+                    <div class="about-content">
+                        <h2 class="section-title">لماذا مُعين؟</h2>
+                        <p class="about-text">
+                            مُعين هو أول مساعد قانوني ذكي متخصص في القانون المصري. نستخدم أحدث تقنيات الذكاء الاصطناعي 
+                            لتقديم استشارات قانونية دقيقة وسريعة، مما يوفر عليك الوقت والجهد والتكلفة.
+                        </p>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">10,000+</div>
+                                <div class="stat-label">مستخدم نشط</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50,000+</div>
+                                <div class="stat-label">استشارة قانونية</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">نسبة الرضا</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Chat View (Like ChatGPT) -->
+        <section class="chat-view" id="chatView">
+            <div class="chat-container">
+                <!-- Sidebar -->
+                <aside class="chat-sidebar" id="chatSidebar">
+                    <button class="back-to-home-btn" onclick="app.showView('landing')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6" stroke-width="2"/>
+                        </svg>
+                        العودة للرئيسية
+                    </button>
+                    
+                    <button class="new-chat-btn" onclick="app.startNewChat()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 4v16m8-8H4" stroke-width="2"/>
+                        </svg>
+                        محادثة جديدة
+                    </button>
+                    
+                    <div class="chat-history-section">
+                        <h3 class="sidebar-title">المحادثات السابقة</h3>
+                        <div class="chat-history-list" id="chatHistoryList">
+                            <!-- Chat history will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-footer">
+                        <div class="user-profile">
+                            <div class="user-avatar">م</div>
+                            <span class="user-name">مستخدم</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Chat Area -->
+                <div class="chat-main">
+                    <!-- Welcome Screen (shown when no messages) -->
+                    <div class="welcome-screen" id="welcomeScreen">
+                        <div class="welcome-content">
+                            <p class="welcome-message">ابدأ محادثة جديدة مع مساعدك القانوني الذكي</p>
+                        </div>
+                    </div>
+
+                    <!-- Messages Container -->
+                    <div class="messages-container hidden" id="messagesContainer">
+                        <div class="messages-list" id="messagesList">
+                            <!-- Messages will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="chat-input-area">
+                        <div class="input-wrapper">
+                            <button class="attach-btn" onclick="app.attachFile()" title="إرفاق ملف">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <input type="file" id="fileAttachment" accept=".pdf,.docx,.doc,.jpg,.jpeg,.png" hidden>
+                            
+                            <textarea 
+                                class="main-chat-input" 
+                                id="mainChatInput" 
+                                placeholder="اكتب سؤالك القانوني هنا..."
+                                rows="1"
+                            ></textarea>
+                            
+                            <button class="send-btn" id="mainSendBtn" onclick="app.sendMainMessage()">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="input-hint">مُعين يمكن أن يخطئ. تحقق من المعلومات المهمة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Analysis View -->
+        <section class="analysis-view" id="analysisView">
+            <div class="analysis-container">
+                <div class="analysis-header">
+                    <button class="back-btn" onclick="app.showView('landing')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6" stroke-width="2"/>
+                        </svg>
+                        العودة
+                    </button>
+                    <div class="page-header-content">
+                        <div class="page-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="page-title">تحليل المستندات القانونية</h1>
+                            <p class="page-subtitle">قم برفع أي مستند قانوني واحصل على تحليل شامل ومبسط</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Area -->
+                <div class="upload-section" id="uploadSection">
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon-wrapper">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="upload-title">اسحب المستند هنا أو انقر للتحميل</h3>
+                        <p class="upload-subtitle">PDF, DOCX, أو صورة (حتى 10 ميجابايت)</p>
+                        <div class="upload-formats">
+                            <span class="format-badge">PDF</span>
+                            <span class="format-badge">DOCX</span>
+                            <span class="format-badge">JPG</span>
+                            <span class="format-badge">PNG</span>
+                        </div>
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.jpg,.jpeg,.png" hidden>
+                    </div>
+                    
+                    <div class="upload-features">
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2"/>
+                            </svg>
+                            <span>آمن ومشفر</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"/>
+                            </svg>
+                            <span>تحليل فوري</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
+                            </svg>
+                            <span>دقة عالية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Indicator -->
+                <div class="processing-section hidden" id="processingSection">
+                    <div class="progress-container">
+                        <div class="progress-steps" id="progressSteps"></div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div class="results-section hidden" id="resultsSection">
+                    <div class="results-grid">
+                        <div class="summary-panel">
+                            <h2 class="panel-title">الملخص بلغة مبسطة</h2>
+                            <div class="summary-content" id="summaryContent"></div>
+                        </div>
+                        <div class="chat-panel">
+                            <h2 class="panel-title">اسأل عن المستند</h2>
+                            <div class="chat-messages" id="chatMessages"></div>
+                            <div class="chat-input-container">
+                                <input type="text" class="chat-input" id="chatInput" placeholder="اكتب سؤالك هنا...">
+                                <button class="chat-send-btn" id="chatSendBtn">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Template Generation View -->
+        <section class="template-view" id="templateView">
+            <div class="template-container">
+                <div class="template-header">
+                    <button class="back-btn" onclick="app.showView('landing')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6" stroke-width="2"/>
+                        </svg>
+                        العودة
+                    </button>
+                    <div class="page-header-content">
+                        <div class="page-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="page-title">إنشاء عقد قانوني</h1>
+                            <p class="page-subtitle">اختر نوع العقد واملأ البيانات لإنشاء عقد احترافي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Selection -->
+                <div class="template-selection" id="templateSelection">
+                    <div class="template-grid" id="templateGrid"></div>
+                </div>
+
+                <!-- Guided Input Form -->
+                <div class="guided-form hidden" id="guidedForm">
+                    <div class="form-progress">
+                        <div class="progress-indicator" id="formProgressIndicator"></div>
+                    </div>
+                    <div class="form-content" id="formContent"></div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="prevStepBtn">السابق</button>
+                        <button class="btn btn-primary" id="nextStepBtn">التالي</button>
+                    </div>
+                </div>
+
+                <!-- Contract Preview -->
+                <div class="contract-preview hidden" id="contractPreview">
+                    <h2 class="section-title">معاينة العقد</h2>
+                    <div class="preview-content" id="previewContent"></div>
+                    <div class="preview-actions">
+                        <button class="btn btn-secondary" onclick="app.editContract()">تعديل</button>
+                        <button class="btn btn-primary" onclick="app.downloadContract('pdf')">تحميل PDF</button>
+                        <button class="btn btn-primary" onclick="app.downloadContract('docx')">تحميل DOCX</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Term Explanation View -->
+        <section class="explanation-view" id="explanationView">
+            <div class="explanation-wrapper">
+                <div class="explanation-header">
+                    <button class="back-btn" onclick="app.showView('landing')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6" stroke-width="2"/>
+                        </svg>
+                        العودة
+                    </button>
+                    <div class="page-header-content">
+                        <div class="page-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="page-title">شرح المصطلحات القانونية</h1>
+                            <p class="page-subtitle">ابحث عن أي مصطلح قانوني واحصل على شرح مبسط</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation-content">
+                    <div class="search-box-wrapper">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/>
+                            </svg>
+                            <input type="text" class="term-input" id="termInput" placeholder="ابحث عن مصطلح قانوني...">
+                            <button class="search-btn" id="explainBtn">
+                                <span>شرح</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-terms">
+                        <h3 class="popular-title">مصطلحات شائعة:</h3>
+                        <div class="terms-tags">
+                            <button class="term-tag" onclick="app.searchTerm('حق الانتفاع')">حق الانتفاع</button>
+                            <button class="term-tag" onclick="app.searchTerm('الحيازة')">الحيازة</button>
+                            <button class="term-tag" onclick="app.searchTerm('التقادم')">التقادم</button>
+                            <button class="term-tag" onclick="app.searchTerm('الشفعة')">الشفعة</button>
+                            <button class="term-tag" onclick="app.searchTerm('الرهن')">الرهن</button>
+                            <button class="term-tag" onclick="app.searchTerm('الوكالة')">الوكالة</button>
+                            <button class="term-tag" onclick="app.searchTerm('الكفالة')">الكفالة</button>
+                            <button class="term-tag" onclick="app.searchTerm('النفقة')">النفقة</button>
+                        </div>
+                    </div>
+                    
+                    <div class="explanation-result hidden" id="explanationResult"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <svg class="disclaimer-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                <p>هذه الخدمة توفر معلومات ومساعدة قانونية، وليست استشارة قانونية رسمية. يُرجى استشارة محامٍ مرخص للأمور الرسمية.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
