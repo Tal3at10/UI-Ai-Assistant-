@@ -50,17 +50,40 @@ class LegalAssistantApp {
         
         if (!videoSection || !videoContainer) return;
         
-        // Auto-play video when in view
+        let hasPlayed = false;
+        
+        // Auto-play video when in view (with better handling)
         if (demoVideo) {
+            // Try to play immediately on load
+            setTimeout(() => {
+                if (!hasPlayed) {
+                    demoVideo.play().then(() => {
+                        hasPlayed = true;
+                        if (videoPlayBtn) {
+                            videoPlayBtn.style.opacity = '0';
+                            videoPlayBtn.style.pointerEvents = 'none';
+                        }
+                    }).catch(err => {
+                        console.log('Autoplay prevented - user interaction required');
+                        // Show play button if autoplay fails
+                        if (videoPlayBtn) {
+                            videoPlayBtn.style.opacity = '1';
+                            videoPlayBtn.style.pointerEvents = 'auto';
+                        }
+                    });
+                }
+            }, 500);
+            
+            // Intersection observer for when scrolling
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        demoVideo.play().catch(err => console.log('Video autoplay prevented:', err));
-                    } else {
+                    if (entry.isIntersecting && hasPlayed) {
+                        demoVideo.play().catch(err => {});
+                    } else if (!entry.isIntersecting && hasPlayed) {
                         demoVideo.pause();
                     }
                 });
-            }, { threshold: 0.5 });
+            }, { threshold: 0.3 });
             
             observer.observe(videoContainer);
         }
@@ -69,9 +92,11 @@ class LegalAssistantApp {
         if (videoPlayBtn && demoVideo) {
             videoPlayBtn.addEventListener('click', () => {
                 if (demoVideo.paused) {
-                    demoVideo.play();
-                    videoPlayBtn.style.opacity = '0';
-                    videoPlayBtn.style.pointerEvents = 'none';
+                    demoVideo.play().then(() => {
+                        hasPlayed = true;
+                        videoPlayBtn.style.opacity = '0';
+                        videoPlayBtn.style.pointerEvents = 'none';
+                    });
                 } else {
                     demoVideo.pause();
                     videoPlayBtn.style.opacity = '1';
@@ -86,6 +111,13 @@ class LegalAssistantApp {
             });
             
             demoVideo.addEventListener('pause', () => {
+                if (hasPlayed) {
+                    videoPlayBtn.style.opacity = '1';
+                    videoPlayBtn.style.pointerEvents = 'auto';
+                }
+            });
+            
+            demoVideo.addEventListener('ended', () => {
                 videoPlayBtn.style.opacity = '1';
                 videoPlayBtn.style.pointerEvents = 'auto';
             });
