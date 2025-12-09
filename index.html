@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <script>
         function safeShowView(view) {
             if (window.app && typeof app.showView === 'function') {
@@ -106,61 +106,38 @@
                 </div>
             </div>
 
-            <!-- Interactive Demo Section -->
-            <div class="demo-section">
-                <div class="section-container">
-                    <div class="demo-grid">
-                        <!-- Left: Live Demo -->
-                        <div class="demo-visual">
-                            <div class="demo-window">
-                                <div class="demo-header">
-                                    <div class="demo-dots">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div class="demo-content" id="demoContent">
-                                    <div class="demo-chat-message user-msg">
-                                        <div class="demo-avatar user">م</div>
-                                        <div class="demo-bubble">حلل عقد الإيجار هذا</div>
-                                    </div>
-                                    <div class="demo-file-upload">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2"/>
-                                        </svg>
-                                        <span>عقد_إيجار.pdf</span>
-                                    </div>
-                                    <div class="demo-chat-message ai-msg">
-                                        <div class="demo-avatar ai">AI</div>
-                                        <div class="demo-bubble">
-                                            <div class="demo-typing">
-                                                <span></span>
-                                                <span></span>
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right: Static Text -->
-                        <div class="demo-text">
-                            <div class="demo-label">المساعد</div>
-                            <h2 class="demo-title">مصمم خصيصاً لخبرتك القانونية</h2>
-                            <p class="demo-description">
-                                وفّر المهام المعقدة بلغة طبيعية لمساعدك الشخصي المتخصص في القانون المصري. 
-                                يفهم مُعين السياق القانوني ويقدم إجابات دقيقة ومفصلة.
-                            </p>
-                            <a href="#" class="demo-link" onclick="app.showView('chat'); return false;">
-                                استكشف المساعد
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="2"/>
+            <!-- Video Demo Section with Width Transition -->
+            <div class="video-demo-section" id="videoSection">
+                <div class="video-container-wrapper">
+                    <div class="video-container" id="videoContainer">
+                        <div class="video-content">
+                            <!-- Video Element -->
+                            <video 
+                                class="demo-video" 
+                                id="demoVideo" 
+                                loop 
+                                muted 
+                                playsinline
+                                poster="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=675&fit=crop"
+                            >
+                                <source src="Law firm Promo.mp4" type="video/mp4">
+                                <source src="Law%20firm%20Promo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button class="video-play-btn" id="videoPlayBtn">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
                                 </svg>
-                            </a>
+                                <span>شاهد الفيديو</span>
+                            </button>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Content that appears after video -->
+                <div class="post-video-content">
+                    <h2 class="section-title">مصمم للمحترفين</h2>
+                    <p class="section-subtitle">مساعد قانوني ذكي مدعوم بالذكاء الاصطناعي للمحامين والشركات</p>
                 </div>
             </div>
 

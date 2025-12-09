@@ -22,6 +22,7 @@ class LegalAssistantApp {
         this.setupScrollAnimations();
         this.startDemoAnimation();
         this.setupNavbarScroll();
+        this.setupVideoScroll();
     }
 
     // Setup Navbar Scroll Effect
@@ -35,6 +36,91 @@ class LegalAssistantApp {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Setup Video Width Transition on Scroll
+    setupVideoScroll() {
+        const videoSection = document.getElementById('videoSection');
+        const videoContainer = document.getElementById('videoContainer');
+        const postVideoContent = document.querySelector('.post-video-content');
+        const demoVideo = document.getElementById('demoVideo');
+        const videoPlayBtn = document.getElementById('videoPlayBtn');
+        
+        if (!videoSection || !videoContainer) return;
+        
+        // Auto-play video when in view
+        if (demoVideo) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        demoVideo.play().catch(err => console.log('Video autoplay prevented:', err));
+                    } else {
+                        demoVideo.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(videoContainer);
+        }
+        
+        // Play button functionality
+        if (videoPlayBtn && demoVideo) {
+            videoPlayBtn.addEventListener('click', () => {
+                if (demoVideo.paused) {
+                    demoVideo.play();
+                    videoPlayBtn.style.opacity = '0';
+                    videoPlayBtn.style.pointerEvents = 'none';
+                } else {
+                    demoVideo.pause();
+                    videoPlayBtn.style.opacity = '1';
+                    videoPlayBtn.style.pointerEvents = 'auto';
+                }
+            });
+            
+            // Hide play button when video is playing
+            demoVideo.addEventListener('play', () => {
+                videoPlayBtn.style.opacity = '0';
+                videoPlayBtn.style.pointerEvents = 'none';
+            });
+            
+            demoVideo.addEventListener('pause', () => {
+                videoPlayBtn.style.opacity = '1';
+                videoPlayBtn.style.pointerEvents = 'auto';
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            const sectionTop = videoSection.offsetTop;
+            const sectionHeight = videoSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress within the video section
+            const scrollProgress = (scrollPosition - sectionTop) / (sectionHeight - windowHeight);
+            
+            // Remove all phase classes
+            videoContainer.classList.remove('phase-1', 'phase-2', 'phase-3', 'phase-4');
+            
+            // Apply phase based on scroll progress
+            if (scrollProgress < 0.2) {
+                videoContainer.classList.add('phase-1');
+            } else if (scrollProgress < 0.4) {
+                videoContainer.classList.add('phase-2');
+            } else if (scrollProgress < 0.6) {
+                videoContainer.classList.add('phase-3');
+            } else if (scrollProgress < 0.8) {
+                videoContainer.classList.add('phase-4');
+            }
+            
+            // Show post-video content when scrolled far enough
+            if (postVideoContent) {
+                if (scrollProgress > 0.7) {
+                    postVideoContent.classList.add('visible');
+                } else {
+                    postVideoContent.classList.remove('visible');
+                }
             }
         });
     }
